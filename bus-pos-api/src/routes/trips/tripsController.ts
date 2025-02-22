@@ -5,7 +5,11 @@ import { and, eq } from "drizzle-orm";
 export class TripsController {
   async createTrip(req: Request, res: Response) {
     try {
-      const [trip] = await db.insert(trips).values(req.body);
+      const tripData = {
+        ...req.body,
+        departureDate: new Date(req.body.departureDate),
+      };
+      const trip = await db.insert(trips).values(tripData);
       res.status(201).json(trip);
     } catch (err) {
       res.status(500).json({ error: "SFailed to create trip" });
@@ -13,17 +17,25 @@ export class TripsController {
   }
   async searchTrips(req: Request, res: Response) {
     try {
-      const { departureCity, destinationCity, departureDate } = req.body;
+      const searchData = {
+        ...req.body,
+        departureDate: new Date(req.body.departureDate),
+      };
       const searchResults = await db
         .select()
         .from(trips)
         .where(
           and(
-            eq(trips.departureCity, departureCity),
-            eq(trips.destinationCity, destinationCity),
-            eq(trips.departureDate, departureDate)
+            eq(trips.departureCity, searchData.departureCity),
+            eq(trips.destinationCity, searchData.destinationCity),
+            eq(trips.departureDate, searchData.departureDate)
           )
         );
+
+      if (!searchResults.length) {
+        res.status(404).json({ error: "No trips found" });
+        return;
+      }
 
       res.status(200).json(searchResults);
     } catch (err) {
@@ -33,7 +45,7 @@ export class TripsController {
 
   async getTripById(req: Request, res: Response) {
     try {
-      const id = Number(req.params);
+      const id = Number(req.params.id);
       const [trip] = await db.select().from(trips).where(eq(trips.id, id));
       res.status(200).json(trip);
     } catch (err) {

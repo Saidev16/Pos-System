@@ -45,7 +45,6 @@ export const bookingRelations = relations(bookings, ({ one }) => ({
 export const createBookingSchema = z.object({
   tripId: z.number().int().positive("Trip ID is required"),
   seatId: z.number().int().positive("Seat ID is required"),
-  userId: z.number().int().positive("User ID is required"),
   passengerName: z.string().min(1, "Passenger name is required"),
   passengerPhone: z.string().min(1, "Passenger phone is required"),
   passengerEmail: z.string().email("Invalid email").optional(),

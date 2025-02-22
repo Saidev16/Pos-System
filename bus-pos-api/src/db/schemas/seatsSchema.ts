@@ -59,3 +59,5 @@ export const createSeatsSchema = z.object({
 export const updateSeatSchema = z.object({
   isAvailable: z.boolean(),
 });
+
+export type CreateTrip = z.infer<typeof createSeatSchema>;

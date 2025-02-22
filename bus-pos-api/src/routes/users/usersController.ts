@@ -1,7 +1,6 @@
-import type { CreateUser } from "../../db/schema";
 import { users } from "../../db/schema";
 import { db } from "../../db/connection";
-import bycrypt from "bcrypt";
+import bycrypt from "bcryptjs";
 import { Request, Response } from "express";
 import { eq } from "drizzle-orm";
 
@@ -13,8 +12,9 @@ export class UsersController {
       const user = req.body;
 
       user.password = await bycrypt.hash(user.password, 10);
-      const [newUser] = await db.insert(users).values(user);
-      res.status(201).json(newUser);
+
+      await db.insert(users).values(user);
+      res.status(201).json(user);
     } catch (err) {
       res.status(500).json({ error: "Something went wrong!" });
     }
