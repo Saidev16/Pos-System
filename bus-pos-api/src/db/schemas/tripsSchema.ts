@@ -26,8 +26,21 @@ export const tripRelations = relations(trips, ({ many }) => ({
   bookings: many(bookings),
 }));
 
+// Zod Validations for creating a trip
+export const createTripSchema = z.object({
+  departureCity: z.string().min(1, "Departure city is required"),
+  destinationCity: z.string().min(1, "Destination city is required"),
+  departureDate: z.string().min(1, "Departure date is required"),
+  price: z.number().positive("Price must be positive"),
+  busNumber: z.string().min(1, "Bus number is required"),
+  totalSeats: z.number().int().positive("Total seats must be positive"),
+});
+
+// Zod Validations for Trips
 export const searchTripSchema = z.object({
   departureCity: z.string().min(1),
   destinationCity: z.string().min(1),
   departureDate: z.string(),
 });
+
+export type CreateTrip = z.infer<typeof createTripSchema>;

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { SeatsController } from "./seatsController";
+import { BookingsController } from "./bookingsController";
 
 const router = Router();
-const seatsController = new SeatsController();
+const bookingsController = new BookingsController();
 
 // Routes
 router.post("/");

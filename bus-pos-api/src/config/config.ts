@@ -5,4 +5,5 @@ export const config = {
   database: {
     url: process.env.DB_URL,
   },
+  jwtSecret: process.env.JWT_SECRET || "secret",
 };
