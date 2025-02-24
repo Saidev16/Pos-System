@@ -7,7 +7,6 @@ export class SeatsController {
   async createSeats(req: Request, res: Response) {
     try {
       const { tripId, seats } = req.body;
-      console.log(seats);
 
       const seatsData = seats.map(
         (seat: { seatNumber: number; seatPosition: "window" | "aisle" }) => ({

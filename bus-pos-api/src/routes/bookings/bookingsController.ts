@@ -1,19 +1,31 @@
 import { Request, Response } from "express";
 import { db } from "../../db/connection";
-import { bookings as bookingsTable } from "../../db/schema";
+import { bookings as bookingsTable, seats } from "../../db/schema";
 import { eq } from "drizzle-orm";
 
 export class BookingsController {
   async createBooking(req: Request, res: Response) {
     try {
       const booking = req.body;
-      const newBooking = await db.insert(bookingsTable).values({
-        ...booking,
-        userId: (req as any).user.id,
+      const newBooking = await db
+        .insert(bookingsTable)
+        .values({
+          ...booking,
+          userId: (req as any).user.id,
 
-        isPaid: false,
-      });
-      res.status(201).json(newBooking);
+          isPaid: false,
+        })
+        .$returningId();
+
+      // Update seat availability
+      const { seatId } = booking;
+
+      await db
+        .update(seats)
+        .set({ isAvailable: false })
+        .where(eq(seats.id, seatId));
+
+      res.status(201).json(newBooking[0]);
     } catch (err) {
       res.status(500).json({ error: "Something went wrong!" });
     }
@@ -52,12 +64,12 @@ export class BookingsController {
   async updatePaymentStatus(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      await db
+      const [booking] = await db
         .update(bookingsTable)
         .set({ isPaid: true })
         .where(eq(bookingsTable.id, id));
 
-      res.status(200).json({ message: "Payment status updated" });
+      res.status(200).json(booking);
       return;
     } catch (err) {
       res.status(500).json({ error: "Something went wrong!" });

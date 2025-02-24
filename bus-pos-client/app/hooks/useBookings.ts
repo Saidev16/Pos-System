@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "~/lib/api";
-import { Booking } from "~/utils/types";
+import { Booking, Trip } from "~/utils/types";
 
 export const useBookings = () => {
   return useQuery({
@@ -22,6 +22,20 @@ export const useCreateBooking = () => {
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["bookings"] });
+    },
+  });
+};
+
+export const useUpdatePayment = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (bookingId: number) => {
+      const { data } = await api.put(`/bookings/${bookingId}/payment`);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["seats"] });
     },
   });
 };

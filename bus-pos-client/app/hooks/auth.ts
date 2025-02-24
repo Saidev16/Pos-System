@@ -17,7 +17,7 @@ export const useLogin = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       if (data.user.role === "admin") {
-        navigate({ to: "/dashboard/admin" });
+        navigate({ to: "/admin/bookings" });
       } else {
         navigate({ to: "/dashboard/agent" });
       }
@@ -50,7 +50,7 @@ export const useRequireAuth = (allowedRoles?: string[]) => {
         navigate({ to: "/login" });
       } else if (allowedRoles && !allowedRoles.includes(user.role)) {
         navigate({
-          to: user.role === "admin" ? "/dashboard/admin" : "/dashboard/agent",
+          to: user.role === "admin" ? "/admin/bookings" : "/dashboard/agent",
         });
       }
     }
@@ -61,7 +61,7 @@ export const useRequireAuth = (allowedRoles?: string[]) => {
 
 export const useLogout = () => {
   const navigate = useNavigate();
-
+  console.log("useLogout");
   return () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");

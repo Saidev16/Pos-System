@@ -30,10 +30,20 @@ export interface Booking {
   passengerEmail?: string;
   isPaid: boolean;
   totalAmount: number;
+  createdAt?: string;
 }
 
 export interface User {
   id: number;
   username: string;
   role: "admin" | "agent";
+}
+
+export interface Seat {
+  id: number;
+  tripId: number;
+  seatNumber: number;
+  isAvailable: boolean;
+  seatPosition: "window" | "aisle";
+  createdAt: string;
 }

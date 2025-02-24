@@ -24,6 +24,7 @@ function TripsSearchView() {
 
   const { data: trips, isLoading } = useTrips(search);
   const searchTrips = useSearchTrips();
+  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ function TripsSearchView() {
 
   return (
     <ProtectedRoute allowedRole="agent">
-      <div className="space-y-10 space-x-5 max-w-[70%] m-auto p-36">
+      <div className="space-y-10 space-x-5 max-w-[90%] m-auto p-36">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">Trips</h1>
         </div>
@@ -102,7 +103,16 @@ function TripsSearchView() {
         ) : (
           <div className="grid gap-4">
             {trips?.map((trip: Trip) => (
-              <Card key={trip.id}>
+              <Card
+                key={trip.id}
+                className="cursor-pointer hover:bg-gray-50"
+                onClick={() =>
+                  navigate({
+                    to: "/agent/trip/$tripId",
+                    params: { tripId: trip.id.toString() },
+                  })
+                }
+              >
                 <CardContent className="pt-6">
                   <div className="flex justify-between items-center">
                     <div>

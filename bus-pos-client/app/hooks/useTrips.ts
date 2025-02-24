@@ -27,6 +27,17 @@ export const useCreateTrip = () => {
   });
 };
 
+export const useTripDetails = (tripId: number) => {
+  return useQuery({
+    queryKey: ["trip", tripId],
+    queryFn: async () => {
+      const { data } = await api.get<Trip>(`/trips/${tripId}`);
+      return data;
+    },
+    enabled: !!tripId,
+  });
+};
+
 export const useSearchTrips = () => {
   const queryClient = useQueryClient();
 

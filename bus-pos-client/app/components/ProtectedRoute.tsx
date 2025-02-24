@@ -17,7 +17,7 @@ export function ProtectedRoute({ children, allowedRole }: ProtectedRouteProps) {
 
   if (user.role !== allowedRole) {
     navigate({
-      to: user.role === "admin" ? "/dashboard/admin" : "/dashboard/agent",
+      to: user.role === "admin" ? "/admin/bookings" : "/dashboard/agent",
     });
     return null;
   }
