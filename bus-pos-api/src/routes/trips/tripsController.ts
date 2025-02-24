@@ -33,7 +33,7 @@ export class TripsController {
         );
 
       if (!searchResults.length) {
-        res.status(404).json({ error: "No trips found" });
+        res.status(200).json([]);
         return;
       }
 

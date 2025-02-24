@@ -14,4 +14,5 @@ router.post(
 );
 router.post("/login", valiateData(loginSchema), usersController.login);
 
+router.get("/profile", usersController.getProfile);
 export default router;

@@ -8,243 +8,287 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as LoginImport } from './routes/login'
-import { Route as LayoutImport } from './routes/_layout'
-import { Route as IndexImport } from './routes/index'
-import { Route as DashboardIndexImport } from './routes/dashboard/index'
-import { Route as DashboardTripsImport } from './routes/dashboard/trips'
-import { Route as DashboardSalesImport } from './routes/dashboard/sales'
-import { Route as DashboardBookingsImport } from './routes/dashboard/bookings'
-import { Route as DashboardLayoutImport } from './routes/dashboard/_layout'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as LoginImport } from "./routes/login";
+import { Route as LayoutImport } from "./routes/_layout";
+import { Route as IndexImport } from "./routes/index";
+import { Route as DashboardIndexImport } from "./routes/dashboard/index";
+import { Route as DashboardSalesImport } from "./routes/dashboard/sales";
+import { Route as DashboardCreateTripImport } from "./routes/dashboard/create-trip";
+import { Route as DashboardBookingsImport } from "./routes/dashboard/bookings";
+import { Route as DashboardAgentImport } from "./routes/dashboard/agent";
+import { Route as DashboardAdminImport } from "./routes/dashboard/admin";
+import { Route as DashboardLayoutImport } from "./routes/dashboard/_layout";
 
 // Create Virtual Routes
 
-const DashboardImport = createFileRoute('/dashboard')()
+const DashboardImport = createFileRoute("/dashboard")();
 
 // Create/Update Routes
 
 const DashboardRoute = DashboardImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+  id: "/dashboard",
+  path: "/dashboard",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const LoginRoute = LoginImport.update({
-  id: '/login',
-  path: '/login',
+  id: "/login",
+  path: "/login",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const LayoutRoute = LayoutImport.update({
-  id: '/_layout',
+  id: "/_layout",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const DashboardIndexRoute = DashboardIndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => DashboardRoute,
-} as any)
-
-const DashboardTripsRoute = DashboardTripsImport.update({
-  id: '/trips',
-  path: '/trips',
-  getParentRoute: () => DashboardRoute,
-} as any)
+} as any);
 
 const DashboardSalesRoute = DashboardSalesImport.update({
-  id: '/sales',
-  path: '/sales',
+  id: "/sales",
+  path: "/sales",
   getParentRoute: () => DashboardRoute,
-} as any)
+} as any);
+
+const DashboardCreateTripRoute = DashboardCreateTripImport.update({
+  id: "/create-trip",
+  path: "/create-trip",
+  getParentRoute: () => DashboardRoute,
+} as any);
 
 const DashboardBookingsRoute = DashboardBookingsImport.update({
-  id: '/bookings',
-  path: '/bookings',
+  id: "/bookings",
+  path: "/bookings",
   getParentRoute: () => DashboardRoute,
-} as any)
+} as any);
+
+const DashboardAgentRoute = DashboardAgentImport.update({
+  id: "/agent",
+  path: "/agent",
+  getParentRoute: () => DashboardRoute,
+} as any);
+
+const DashboardAdminRoute = DashboardAdminImport.update({
+  id: "/admin",
+  path: "/admin",
+  getParentRoute: () => DashboardRoute,
+} as any);
 
 const DashboardLayoutRoute = DashboardLayoutImport.update({
-  id: '/_layout',
+  id: "/_layout",
   getParentRoute: () => DashboardRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/_layout': {
-      id: '/_layout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof LayoutImport
-      parentRoute: typeof rootRoute
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/_layout': {
-      id: '/dashboard/_layout'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardLayoutImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/bookings': {
-      id: '/dashboard/bookings'
-      path: '/bookings'
-      fullPath: '/dashboard/bookings'
-      preLoaderRoute: typeof DashboardBookingsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/sales': {
-      id: '/dashboard/sales'
-      path: '/sales'
-      fullPath: '/dashboard/sales'
-      preLoaderRoute: typeof DashboardSalesImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/trips': {
-      id: '/dashboard/trips'
-      path: '/trips'
-      fullPath: '/dashboard/trips'
-      preLoaderRoute: typeof DashboardTripsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexImport
-      parentRoute: typeof DashboardImport
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_layout": {
+      id: "/_layout";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof LayoutImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/login": {
+      id: "/login";
+      path: "/login";
+      fullPath: "/login";
+      preLoaderRoute: typeof LoginImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/dashboard": {
+      id: "/dashboard";
+      path: "/dashboard";
+      fullPath: "/dashboard";
+      preLoaderRoute: typeof DashboardImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/dashboard/_layout": {
+      id: "/dashboard/_layout";
+      path: "/dashboard";
+      fullPath: "/dashboard";
+      preLoaderRoute: typeof DashboardLayoutImport;
+      parentRoute: typeof DashboardRoute;
+    };
+    "/dashboard/admin": {
+      id: "/dashboard/admin";
+      path: "/admin";
+      fullPath: "/dashboard/admin";
+      preLoaderRoute: typeof DashboardAdminImport;
+      parentRoute: typeof DashboardImport;
+    };
+    "/dashboard/agent": {
+      id: "/dashboard/agent";
+      path: "/agent";
+      fullPath: "/dashboard/agent";
+      preLoaderRoute: typeof DashboardAgentImport;
+      parentRoute: typeof DashboardImport;
+    };
+    "/dashboard/bookings": {
+      id: "/dashboard/bookings";
+      path: "/bookings";
+      fullPath: "/dashboard/bookings";
+      preLoaderRoute: typeof DashboardBookingsImport;
+      parentRoute: typeof DashboardImport;
+    };
+    "/dashboard/create-trip": {
+      id: "/dashboard/create-trip";
+      path: "/create-trip";
+      fullPath: "/dashboard/create-trip";
+      preLoaderRoute: typeof DashboardCreateTripImport;
+      parentRoute: typeof DashboardImport;
+    };
+    "/dashboard/sales": {
+      id: "/dashboard/sales";
+      path: "/sales";
+      fullPath: "/dashboard/sales";
+      preLoaderRoute: typeof DashboardSalesImport;
+      parentRoute: typeof DashboardImport;
+    };
+    "/dashboard/": {
+      id: "/dashboard/";
+      path: "/";
+      fullPath: "/dashboard/";
+      preLoaderRoute: typeof DashboardIndexImport;
+      parentRoute: typeof DashboardImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface DashboardRouteChildren {
-  DashboardLayoutRoute: typeof DashboardLayoutRoute
-  DashboardBookingsRoute: typeof DashboardBookingsRoute
-  DashboardSalesRoute: typeof DashboardSalesRoute
-  DashboardTripsRoute: typeof DashboardTripsRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardLayoutRoute: typeof DashboardLayoutRoute;
+  DashboardAdminRoute: typeof DashboardAdminRoute;
+  DashboardAgentRoute: typeof DashboardAgentRoute;
+  DashboardBookingsRoute: typeof DashboardBookingsRoute;
+  DashboardCreateTripRoute: typeof DashboardCreateTripRoute;
+  DashboardSalesRoute: typeof DashboardSalesRoute;
+  DashboardIndexRoute: typeof DashboardIndexRoute;
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardLayoutRoute: DashboardLayoutRoute,
+  DashboardAdminRoute: DashboardAdminRoute,
+  DashboardAgentRoute: DashboardAgentRoute,
   DashboardBookingsRoute: DashboardBookingsRoute,
+  DashboardCreateTripRoute: DashboardCreateTripRoute,
   DashboardSalesRoute: DashboardSalesRoute,
-  DashboardTripsRoute: DashboardTripsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
-}
+};
 
 const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
+  DashboardRouteChildren
+);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '': typeof LayoutRoute
-  '/login': typeof LoginRoute
-  '/dashboard': typeof DashboardLayoutRoute
-  '/dashboard/bookings': typeof DashboardBookingsRoute
-  '/dashboard/sales': typeof DashboardSalesRoute
-  '/dashboard/trips': typeof DashboardTripsRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  "/": typeof IndexRoute;
+  "": typeof LayoutRoute;
+  "/login": typeof LoginRoute;
+  "/dashboard": typeof DashboardLayoutRoute;
+  "/dashboard/admin": typeof DashboardAdminRoute;
+  "/dashboard/agent": typeof DashboardAgentRoute;
+  "/dashboard/bookings": typeof DashboardBookingsRoute;
+  "/dashboard/create-trip": typeof DashboardCreateTripRoute;
+  "/dashboard/sales": typeof DashboardSalesRoute;
+  "/dashboard/": typeof DashboardIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '': typeof LayoutRoute
-  '/login': typeof LoginRoute
-  '/dashboard': typeof DashboardIndexRoute
-  '/dashboard/bookings': typeof DashboardBookingsRoute
-  '/dashboard/sales': typeof DashboardSalesRoute
-  '/dashboard/trips': typeof DashboardTripsRoute
+  "/": typeof IndexRoute;
+  "": typeof LayoutRoute;
+  "/login": typeof LoginRoute;
+  "/dashboard": typeof DashboardIndexRoute;
+  "/dashboard/admin": typeof DashboardAdminRoute;
+  "/dashboard/agent": typeof DashboardAgentRoute;
+  "/dashboard/bookings": typeof DashboardBookingsRoute;
+  "/dashboard/create-trip": typeof DashboardCreateTripRoute;
+  "/dashboard/sales": typeof DashboardSalesRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/_layout': typeof LayoutRoute
-  '/login': typeof LoginRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/dashboard/_layout': typeof DashboardLayoutRoute
-  '/dashboard/bookings': typeof DashboardBookingsRoute
-  '/dashboard/sales': typeof DashboardSalesRoute
-  '/dashboard/trips': typeof DashboardTripsRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/_layout": typeof LayoutRoute;
+  "/login": typeof LoginRoute;
+  "/dashboard": typeof DashboardRouteWithChildren;
+  "/dashboard/_layout": typeof DashboardLayoutRoute;
+  "/dashboard/admin": typeof DashboardAdminRoute;
+  "/dashboard/agent": typeof DashboardAgentRoute;
+  "/dashboard/bookings": typeof DashboardBookingsRoute;
+  "/dashboard/create-trip": typeof DashboardCreateTripRoute;
+  "/dashboard/sales": typeof DashboardSalesRoute;
+  "/dashboard/": typeof DashboardIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | ''
-    | '/login'
-    | '/dashboard'
-    | '/dashboard/bookings'
-    | '/dashboard/sales'
-    | '/dashboard/trips'
-    | '/dashboard/'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | ""
+    | "/login"
+    | "/dashboard"
+    | "/dashboard/admin"
+    | "/dashboard/agent"
+    | "/dashboard/bookings"
+    | "/dashboard/create-trip"
+    | "/dashboard/sales"
+    | "/dashboard/";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | ''
-    | '/login'
-    | '/dashboard'
-    | '/dashboard/bookings'
-    | '/dashboard/sales'
-    | '/dashboard/trips'
+    | "/"
+    | ""
+    | "/login"
+    | "/dashboard"
+    | "/dashboard/admin"
+    | "/dashboard/agent"
+    | "/dashboard/bookings"
+    | "/dashboard/create-trip"
+    | "/dashboard/sales";
   id:
-    | '__root__'
-    | '/'
-    | '/_layout'
-    | '/login'
-    | '/dashboard'
-    | '/dashboard/_layout'
-    | '/dashboard/bookings'
-    | '/dashboard/sales'
-    | '/dashboard/trips'
-    | '/dashboard/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/_layout"
+    | "/login"
+    | "/dashboard"
+    | "/dashboard/_layout"
+    | "/dashboard/admin"
+    | "/dashboard/agent"
+    | "/dashboard/bookings"
+    | "/dashboard/create-trip"
+    | "/dashboard/sales"
+    | "/dashboard/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  LayoutRoute: typeof LayoutRoute
-  LoginRoute: typeof LoginRoute
-  DashboardRoute: typeof DashboardRouteWithChildren
+  IndexRoute: typeof IndexRoute;
+  LayoutRoute: typeof LayoutRoute;
+  LoginRoute: typeof LoginRoute;
+  DashboardRoute: typeof DashboardRouteWithChildren;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -252,11 +296,11 @@ const rootRouteChildren: RootRouteChildren = {
   LayoutRoute: LayoutRoute,
   LoginRoute: LoginRoute,
   DashboardRoute: DashboardRouteWithChildren,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -283,9 +327,11 @@ export const routeTree = rootRoute
       "filePath": "dashboard",
       "children": [
         "/dashboard/_layout",
+        "/dashboard/admin",
+        "/dashboard/agent",
         "/dashboard/bookings",
+        "/dashboard/create-trip",
         "/dashboard/sales",
-        "/dashboard/trips",
         "/dashboard/"
       ]
     },
@@ -293,16 +339,24 @@ export const routeTree = rootRoute
       "filePath": "dashboard/_layout.tsx",
       "parent": "/dashboard"
     },
+    "/dashboard/admin": {
+      "filePath": "dashboard/admin.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/agent": {
+      "filePath": "dashboard/agent.tsx",
+      "parent": "/dashboard"
+    },
     "/dashboard/bookings": {
       "filePath": "dashboard/bookings.tsx",
       "parent": "/dashboard"
     },
-    "/dashboard/sales": {
-      "filePath": "dashboard/sales.tsx",
+    "/dashboard/create-trip": {
+      "filePath": "dashboard/create-trip.tsx",
       "parent": "/dashboard"
     },
-    "/dashboard/trips": {
-      "filePath": "dashboard/trips.tsx",
+    "/dashboard/sales": {
+      "filePath": "dashboard/sales.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/": {
