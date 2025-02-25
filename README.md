@@ -158,26 +158,24 @@ bus-pos-client/
 
 ### Authentication
 - `POST /users/login` - User login
-- `POST /users/register` - User registration (if enabled)
+- `POST /users/register` - User registration 
+- `GET /users/profile` - Get user profile
 
 ### Trips
-- `GET /trips` - List all trips
-- `GET /trips/:id` - Get trip details
 - `POST /trips` - Create a new trip (Admin only)
-- `PUT /trips/:id` - Update a trip (Admin only)
-- `DELETE /trips/:id` - Delete a trip (Admin only)
+- `POST /trips/search` - Search for trips based on criteria
+- `GET /trips/:id` - Get trip details by ID
 
 ### Seats
-- `GET /seats` - List all seats
-- `GET /seats/:id` - Get seat details
+- `POST /seats` - Create seats (Admin only)
 - `GET /seats/trip/:tripId` - Get seats for a specific trip
-- `PUT /seats/:id` - Update seat availability
+- `PUT /seats/:seatId/availability` - Update seat availability
 
 ### Bookings
+- `POST /bookings` - Create a new booking
 - `GET /bookings` - List all bookings
 - `GET /bookings/:id` - Get booking details
-- `POST /bookings` - Create a new booking
-- `PUT /bookings/:id/pay` - Mark a booking as paid
+- `PUT /bookings/:id/payment` - Mark a booking as paid
 
 
 
