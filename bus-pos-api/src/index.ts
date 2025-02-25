@@ -3,12 +3,11 @@ import express from "express";
 import cors from "cors";
 import { config } from "./config/config";
 const app = express();
-import { Router } from "express";
 
-import bookingRoutes from "../src/routes/bookings";
-import seatRoutes from "../src/routes/seats";
-import userRoutes from "../src/routes/users";
-import tripRoutes from "../src/routes/trips";
+import bookingRoutes from "./routes/bookings";
+import seatRoutes from "./routes/seats";
+import userRoutes from "./routes/users";
+import tripRoutes from "./routes/trips";
 
 app.use(cors());
 app.use(express.json());

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { valiateData } from "../../middlwares/validateData";
-import { createTripSchema, searchTripSchema } from "../../db/schema";
+import { valiateData } from "@middlwares/validateData";
+import { createTripSchema, searchTripSchema } from "@db/schemas/tripsSchema";
 import { TripsController } from "./tripsController";
-import { authMiddleware, authorize } from "../../middlwares/auth";
+import { authMiddleware, authorize } from "@middlwares/auth";
 
 const router = Router();
 

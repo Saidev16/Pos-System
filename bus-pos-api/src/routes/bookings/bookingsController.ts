@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { db } from "../../db/connection";
-import { bookings as bookingsTable, seats } from "../../db/schema";
+import { db } from "@db/connection";
+import { bookings as bookingsTable, seats } from "@db/schema";
 import { eq } from "drizzle-orm";
 
 export class BookingsController {

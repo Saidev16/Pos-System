@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { SeatsController } from "./seatsController";
-import { authMiddleware, authorize } from "../../middlwares/auth";
-import { valiateData } from "../../middlwares/validateData";
-import { createSeatsSchema, updateSeatSchema } from "../../db/schema";
+import { authMiddleware, authorize } from "@middlwares/auth";
+import { valiateData } from "@middlwares/validateData";
+import { createSeatsSchema, updateSeatSchema } from "@db/schemas/seatsSchema";
 
 const router = Router();
 const seatsController = new SeatsController();

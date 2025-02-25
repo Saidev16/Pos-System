@@ -1,11 +1,11 @@
-import { users } from "../../db/schema";
-import { db } from "../../db/connection";
+import { users } from "@db/schema";
+import { db } from "@db/connection";
 import bycrypt from "bcryptjs";
 import { Request, Response } from "express";
 import { eq } from "drizzle-orm";
 
 import jwt from "jsonwebtoken";
-import { config } from "../../config/config";
+import { config } from "@config/config";
 export class UsersController {
   async register(req: Request, res: Response) {
     try {

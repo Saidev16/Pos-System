@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { BookingsController } from "./bookingsController";
-import { valiateData } from "../../middlwares/validateData";
-import { createBookingSchema } from "../../db/schema";
-import { authMiddleware } from "../../middlwares/auth";
+import { valiateData } from "@middlwares/validateData";
+import { createBookingSchema } from "@db/schemas/bookingsSchema";
+import { authMiddleware } from "@middlwares/auth";
 
 const router = Router();
 const bookingsController = new BookingsController();

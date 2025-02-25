@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { db } from "../../db/connection";
-import { seats, trips } from "../../db/schema";
+import { db } from "@db/connection";
+import { seats, trips } from "@db/schema";
 import { and, eq } from "drizzle-orm";
 export class TripsController {
   async createTrip(req: Request, res: Response) {

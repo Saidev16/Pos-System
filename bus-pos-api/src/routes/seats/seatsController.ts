@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
-import { seats as seatsTable } from "../../db/schema";
-import { db } from "../../db/connection";
+import { seats as seatsTable } from "@db/schema";
+import { db } from "@db/connection";
 import { eq } from "drizzle-orm";
 export class SeatsController {
   async createSeats(req: Request, res: Response) {
