@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { useLogin } from "~/hooks/auth";
 
@@ -24,7 +30,7 @@ function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Card className="w-[350px]">
+      <Card className="w-[400px]">
         <CardHeader>
           <CardTitle>Login to Bus POS</CardTitle>
         </CardHeader>
@@ -67,6 +73,24 @@ function LoginPage() {
             )}
           </form>
         </CardContent>
+
+        <CardFooter className="flex flex-col items-start">
+          <div className="text-sm text-gray-600 border-t pt-4 w-full">
+            <p className="font-semibold mb-2">Demo Accounts:</p>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="border rounded p-2 bg-gray-50">
+                <p className="font-medium">Admin</p>
+                <p>Username: admin user</p>
+                <p>Password: passpass</p>
+              </div>
+              <div className="border rounded p-2 bg-gray-50">
+                <p className="font-medium">Agent</p>
+                <p>Username: agent user</p>
+                <p>Password: passpass</p>
+              </div>
+            </div>
+          </div>
+        </CardFooter>
       </Card>
     </div>
   );
