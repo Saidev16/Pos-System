@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
@@ -13,12 +16,11 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"],
-      "@middlwares/*": ["src/middlwares/*"],
-      "@db/*": ["src/db/*"],
-      "@controllers/*": ["src/controllers/*"],
-      "@routes/*": ["src/routes/*"],
-      "@config/*": ["src/config/*"]
+      "@middlwares/*": ["./src/middlwares/*"],
+      "@db/*": ["./src/db/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@config/*": ["./src/config/*"]
     },
     "typeRoots": ["./node_modules/@types"]
   },
