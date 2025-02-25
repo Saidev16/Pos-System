@@ -38,7 +38,7 @@ This Bus Reservation System allows travelers to search for bus trips, view avail
 1. Clone the repository
    ```bash
    git clone https://github.com/Saidev16/Pos-System.git
-   cd bus-reservation-system/bus-pos-api
+   cd Pos-System/bus-pos-api
    ```
 
 2. Install dependencies
