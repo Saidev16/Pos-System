@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { api } from "~/lib/api";
 import { Trip, TripSearch } from "~/utils/types";
 
-export const useTrips = (search: TripSearch) => {
+export const useTrips = () => {
   return useQuery({
     queryKey: ["trips"],
     queryFn: async ({ queryKey, signal }) => {

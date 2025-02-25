@@ -71,7 +71,7 @@ function RouteComponent() {
 
       toast("Trip created successfully");
 
-      navigate({ to: "/dashboard/agent" });
+      navigate({ to: "/agent/trip" });
     } catch (error) {
       toast.error("Failed to create trip. Please try again.");
     }
@@ -204,7 +204,7 @@ function RouteComponent() {
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => navigate({ to: "/dashboard/agent" })}
+                  onClick={() => navigate({ to: "/agent/trip" })}
                 >
                   Cancel
                 </Button>

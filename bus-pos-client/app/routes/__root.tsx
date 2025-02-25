@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   createRootRoute,
+  useNavigate,
   useRouter,
   useRouterState,
 } from "@tanstack/react-router";
@@ -68,13 +69,51 @@ export const Route = createRootRoute({
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const user = getStoredUser();
-  console.log("user from store", user);
+  const navigate = useNavigate();
+
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
   const handleLogout = useLogout();
   const isAdminRoute = currentPath.startsWith("/admin");
+  const isAgentRoute = currentPath.startsWith("/agent");
 
   const isAdmin = user?.role === "admin";
+  const isAgent = user?.role === "agent";
+  const isLoginRoute = currentPath === "/login";
+
+  // Redirect if not authenticated
+  React.useEffect(() => {
+    if (!user) {
+      navigate({ to: "/login" });
+      return;
+    }
+    if (user && isLoginRoute) {
+      if (isAdmin) {
+        navigate({ to: "/admin/bookings" });
+      } else {
+        navigate({ to: "/agent/trip" });
+      }
+      return;
+    }
+    // Redirect based on role access
+    if (isAdminRoute && !isAdmin) {
+      navigate({ to: "/agent/trip" });
+      return;
+    }
+
+    if (isAgentRoute && !isAgent) {
+      navigate({ to: "/admin/bookings" });
+      return;
+    }
+  }, [
+    user,
+    currentPath,
+    isAdmin,
+    isAgent,
+    isAdminRoute,
+    isAgentRoute,
+    navigate,
+  ]);
 
   // Only show admin sidebar if user is admin and on an admin route
   const showAdminSidebar = isAdmin && isAdminRoute;
@@ -86,7 +125,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
               <div className="flex items-center">
-                <Link to="/" className="text-xl font-bold">
+                <Link to="/agent/trip" className="text-xl font-bold">
                   Bus Ticketing System
                 </Link>
               </div>
@@ -96,6 +135,14 @@ function AppLayout({ children }: { children: React.ReactNode }) {
                   <span className="text-sm text-gray-700">
                     {user.username || "User"}
                   </span>
+
+                  <Link to="/agent/trip" className="text-sm text-gray-700">
+                    Search Trip
+                  </Link>
+                  <Link to="/agent/sales" className="text-sm text-gray-700">
+                    Sales
+                  </Link>
+
                   <Button variant="outline" size="sm" onClick={handleLogout}>
                     Logout
                   </Button>

@@ -61,7 +61,7 @@ export function generateTicketPDF(
   doc.setFontSize(12);
   doc.setFont("helvetica", "normal");
   doc.text(`Seat Number: ${seatNumber}`, 20, 150);
-  doc.text(`Price: $${tripData?.price}`, 20, 164);
+  doc.text(`Price: ${tripData?.price} Dh`, 20, 164);
   doc.text(`Payment Status: Paid`, 20, 171);
 
   // Add footer

@@ -19,7 +19,7 @@ export const useLogin = () => {
       if (data.user.role === "admin") {
         navigate({ to: "/admin/bookings" });
       } else {
-        navigate({ to: "/dashboard/agent" });
+        navigate({ to: "/agent/trip" });
       }
     },
   });
@@ -50,7 +50,7 @@ export const useRequireAuth = (allowedRoles?: string[]) => {
         navigate({ to: "/login" });
       } else if (allowedRoles && !allowedRoles.includes(user.role)) {
         navigate({
-          to: user.role === "admin" ? "/admin/bookings" : "/dashboard/agent",
+          to: user.role === "admin" ? "/admin/bookings" : "/agent/trip",
         });
       }
     }

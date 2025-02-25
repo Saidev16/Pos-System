@@ -8,33 +8,19 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
-import { Route as DashboardIndexImport } from './routes/dashboard/index'
-import { Route as DashboardCreateTripImport } from './routes/dashboard/create-trip'
-import { Route as DashboardAgentImport } from './routes/dashboard/agent'
-import { Route as DashboardLayoutImport } from './routes/dashboard/_layout'
+import { Route as AgentSalesImport } from './routes/agent/sales'
 import { Route as AdminCreateTripImport } from './routes/admin/create-trip'
 import { Route as AdminBookingsImport } from './routes/admin/bookings'
+import { Route as AgentTripIndexImport } from './routes/agent/trip/index'
 import { Route as AgentTripTripIdImport } from './routes/agent/trip/$tripId'
 
-// Create Virtual Routes
-
-const DashboardImport = createFileRoute('/dashboard')()
-
 // Create/Update Routes
-
-const DashboardRoute = DashboardImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const LoginRoute = LoginImport.update({
   id: '/login',
@@ -53,27 +39,10 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DashboardIndexRoute = DashboardIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
-const DashboardCreateTripRoute = DashboardCreateTripImport.update({
-  id: '/create-trip',
-  path: '/create-trip',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
-const DashboardAgentRoute = DashboardAgentImport.update({
-  id: '/agent',
-  path: '/agent',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
-const DashboardLayoutRoute = DashboardLayoutImport.update({
-  id: '/_layout',
-  getParentRoute: () => DashboardRoute,
+const AgentSalesRoute = AgentSalesImport.update({
+  id: '/agent/sales',
+  path: '/agent/sales',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const AdminCreateTripRoute = AdminCreateTripImport.update({
@@ -85,6 +54,12 @@ const AdminCreateTripRoute = AdminCreateTripImport.update({
 const AdminBookingsRoute = AdminBookingsImport.update({
   id: '/admin/bookings',
   path: '/admin/bookings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AgentTripIndexRoute = AgentTripIndexImport.update({
+  id: '/agent/trip/',
+  path: '/agent/trip/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -133,40 +108,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCreateTripImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
+    '/agent/sales': {
+      id: '/agent/sales'
+      path: '/agent/sales'
+      fullPath: '/agent/sales'
+      preLoaderRoute: typeof AgentSalesImport
       parentRoute: typeof rootRoute
-    }
-    '/dashboard/_layout': {
-      id: '/dashboard/_layout'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardLayoutImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/dashboard/agent': {
-      id: '/dashboard/agent'
-      path: '/agent'
-      fullPath: '/dashboard/agent'
-      preLoaderRoute: typeof DashboardAgentImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/create-trip': {
-      id: '/dashboard/create-trip'
-      path: '/create-trip'
-      fullPath: '/dashboard/create-trip'
-      preLoaderRoute: typeof DashboardCreateTripImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexImport
-      parentRoute: typeof DashboardImport
     }
     '/agent/trip/$tripId': {
       id: '/agent/trip/$tripId'
@@ -175,28 +122,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgentTripTripIdImport
       parentRoute: typeof rootRoute
     }
+    '/agent/trip/': {
+      id: '/agent/trip/'
+      path: '/agent/trip'
+      fullPath: '/agent/trip'
+      preLoaderRoute: typeof AgentTripIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
-
-interface DashboardRouteChildren {
-  DashboardLayoutRoute: typeof DashboardLayoutRoute
-  DashboardAgentRoute: typeof DashboardAgentRoute
-  DashboardCreateTripRoute: typeof DashboardCreateTripRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
-}
-
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardLayoutRoute: DashboardLayoutRoute,
-  DashboardAgentRoute: DashboardAgentRoute,
-  DashboardCreateTripRoute: DashboardCreateTripRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
-}
-
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -204,11 +140,9 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/create-trip': typeof AdminCreateTripRoute
-  '/dashboard': typeof DashboardLayoutRoute
-  '/dashboard/agent': typeof DashboardAgentRoute
-  '/dashboard/create-trip': typeof DashboardCreateTripRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/agent/sales': typeof AgentSalesRoute
   '/agent/trip/$tripId': typeof AgentTripTripIdRoute
+  '/agent/trip': typeof AgentTripIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -217,10 +151,9 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/create-trip': typeof AdminCreateTripRoute
-  '/dashboard': typeof DashboardIndexRoute
-  '/dashboard/agent': typeof DashboardAgentRoute
-  '/dashboard/create-trip': typeof DashboardCreateTripRoute
+  '/agent/sales': typeof AgentSalesRoute
   '/agent/trip/$tripId': typeof AgentTripTripIdRoute
+  '/agent/trip': typeof AgentTripIndexRoute
 }
 
 export interface FileRoutesById {
@@ -230,12 +163,9 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/create-trip': typeof AdminCreateTripRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/dashboard/_layout': typeof DashboardLayoutRoute
-  '/dashboard/agent': typeof DashboardAgentRoute
-  '/dashboard/create-trip': typeof DashboardCreateTripRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/agent/sales': typeof AgentSalesRoute
   '/agent/trip/$tripId': typeof AgentTripTripIdRoute
+  '/agent/trip/': typeof AgentTripIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -246,11 +176,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin/bookings'
     | '/admin/create-trip'
-    | '/dashboard'
-    | '/dashboard/agent'
-    | '/dashboard/create-trip'
-    | '/dashboard/'
+    | '/agent/sales'
     | '/agent/trip/$tripId'
+    | '/agent/trip'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -258,10 +186,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin/bookings'
     | '/admin/create-trip'
-    | '/dashboard'
-    | '/dashboard/agent'
-    | '/dashboard/create-trip'
+    | '/agent/sales'
     | '/agent/trip/$tripId'
+    | '/agent/trip'
   id:
     | '__root__'
     | '/'
@@ -269,12 +196,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/admin/bookings'
     | '/admin/create-trip'
-    | '/dashboard'
-    | '/dashboard/_layout'
-    | '/dashboard/agent'
-    | '/dashboard/create-trip'
-    | '/dashboard/'
+    | '/agent/sales'
     | '/agent/trip/$tripId'
+    | '/agent/trip/'
   fileRoutesById: FileRoutesById
 }
 
@@ -284,8 +208,9 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   AdminBookingsRoute: typeof AdminBookingsRoute
   AdminCreateTripRoute: typeof AdminCreateTripRoute
-  DashboardRoute: typeof DashboardRouteWithChildren
+  AgentSalesRoute: typeof AgentSalesRoute
   AgentTripTripIdRoute: typeof AgentTripTripIdRoute
+  AgentTripIndexRoute: typeof AgentTripIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -294,8 +219,9 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   AdminBookingsRoute: AdminBookingsRoute,
   AdminCreateTripRoute: AdminCreateTripRoute,
-  DashboardRoute: DashboardRouteWithChildren,
+  AgentSalesRoute: AgentSalesRoute,
   AgentTripTripIdRoute: AgentTripTripIdRoute,
+  AgentTripIndexRoute: AgentTripIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -313,8 +239,9 @@ export const routeTree = rootRoute
         "/login",
         "/admin/bookings",
         "/admin/create-trip",
-        "/dashboard",
-        "/agent/trip/$tripId"
+        "/agent/sales",
+        "/agent/trip/$tripId",
+        "/agent/trip/"
       ]
     },
     "/": {
@@ -332,33 +259,14 @@ export const routeTree = rootRoute
     "/admin/create-trip": {
       "filePath": "admin/create-trip.tsx"
     },
-    "/dashboard": {
-      "filePath": "dashboard",
-      "children": [
-        "/dashboard/_layout",
-        "/dashboard/agent",
-        "/dashboard/create-trip",
-        "/dashboard/"
-      ]
-    },
-    "/dashboard/_layout": {
-      "filePath": "dashboard/_layout.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/agent": {
-      "filePath": "dashboard/agent.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/create-trip": {
-      "filePath": "dashboard/create-trip.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/": {
-      "filePath": "dashboard/index.tsx",
-      "parent": "/dashboard"
+    "/agent/sales": {
+      "filePath": "agent/sales.tsx"
     },
     "/agent/trip/$tripId": {
       "filePath": "agent/trip/$tripId.tsx"
+    },
+    "/agent/trip/": {
+      "filePath": "agent/trip/index.tsx"
     }
   }
 }

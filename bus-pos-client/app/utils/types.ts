@@ -30,7 +30,7 @@ export interface Booking {
   passengerEmail?: string;
   isPaid: boolean;
   totalAmount: number;
-  createdAt?: string;
+  createdAt: string;
 }
 
 export interface User {
