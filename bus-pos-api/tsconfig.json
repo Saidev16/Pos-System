@@ -13,7 +13,12 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"]
+      "*": ["node_modules/*"],
+      "@middlwares/*": ["src/middlwares/*"],
+      "@db/*": ["src/db/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@routes/*": ["src/routes/*"],
+      "@config/*": ["src/config/*"]
     },
     "typeRoots": ["./node_modules/@types"]
   },
