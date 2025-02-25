@@ -43,4 +43,4 @@ export const searchTripSchema = z.object({
   departureDate: z.string(),
 });
 
-export type CreateTrip = z.infer<typeof createTripSchema>;
+export type TripCreate = z.infer<typeof createTripSchema>;
