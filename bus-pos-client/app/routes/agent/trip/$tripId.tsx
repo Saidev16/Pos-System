@@ -114,7 +114,7 @@ function RouteComponent() {
           </p>
         </div>
         <div className="text-right">
-          <p className="text-2xl font-bold">${trip.price}</p>
+          <p className="text-2xl font-bold">{trip.price} Dh</p>
           <p className="text-gray-500">Per seat</p>
         </div>
       </div>
